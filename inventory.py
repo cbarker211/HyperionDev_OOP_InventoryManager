@@ -69,6 +69,7 @@ def read_shoes_data():
                         line = line.split(',')
                         #Append a new Shoe object to the list.
                         shoe_list.append(Shoe(line[0],line[1],line[2],line[3],line[4]))
+            print("Data added from file successfully.")
 
         #If there is nothing at all in the file, print an error message.       
         else:
@@ -181,7 +182,9 @@ def capture_shoes():
             f.write("\n")
             f.write(NewShoe.__str__())
             #Finally also append the item to the shoe list.
-            shoe_list.append(NewShoe)        
+            shoe_list.append(NewShoe)
+
+    print("New shoe added successfully.")      
 
 #Function to view details of all shoes.
 def view_all():
@@ -206,6 +209,7 @@ def re_stock():
     #If there is only one minimum, save the minimum index.
     if num_min == 1:
         min_index = quantities.index(min(quantities))
+        print(f"{shoe_list[min_index].__str__()}")
     #If there is more than one minimum, then find the indices of each minimum. 
     elif num_min >= 1:
         start_at = -1
@@ -259,6 +263,7 @@ def re_stock():
                             f.write("Country,Code,Product,Cost,Quantity\n")
                             for shoe in shoe_list:
                                 f.write(f"{shoe.__str__()}\n")
+                        print("Shoe restocked successfully.")
                     else:
                         print("New quantity must be a positive integer, please reenter.")
                 break
@@ -330,8 +335,8 @@ def highest_qty():
 
 
 #==========Main Menu=============
-#Uncomment this to automatically read the inventory file when starting the program.
-#read_shoes_data()
+#Automatically read the inventory file when starting the program.
+read_shoes_data()
 line_rule = "─"*60
 print("Welcome to the inventory system.\n", line_rule)
 while True:
